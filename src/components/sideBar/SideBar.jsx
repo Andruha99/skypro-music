@@ -1,5 +1,6 @@
 import React from "react";
 import "./sideBar.css";
+import { SideBarItem } from "../sideBarItem/SideBarItem";
 
 export const SideBar = () => {
   return (
@@ -14,33 +15,23 @@ export const SideBar = () => {
       </div>
       <div className="sidebar__block">
         <div className="sidebar__list">
-          <div className="sidebar__item">
-            <a className="sidebar__link" href="#">
-              <img
-                className="sidebar__img"
-                src="img/playlist01.png"
-                alt="day's playlist"
-              />
-            </a>
-          </div>
-          <div className="sidebar__item">
-            <a className="sidebar__link" href="#">
-              <img
-                className="sidebar__img"
-                src="img/playlist02.png"
-                alt="day's playlist"
-              />
-            </a>
-          </div>
-          <div className="sidebar__item">
-            <a className="sidebar__link" href="#">
-              <img
-                className="sidebar__img"
-                src="img/playlist03.png"
-                alt="day's playlist"
-              />
-            </a>
-          </div>
+          <SideBarItem
+            linkTo="#"
+            imgSrc="img/playlist01.png"
+            imgAlt="day's playlist"
+          />
+
+          <SideBarItem
+            linkTo="#"
+            imgSrc="img/playlist02.png"
+            imgAlt="day's playlist"
+          />
+
+          <SideBarItem
+            linkTo="#"
+            imgSrc="img/playlist03.png"
+            imgAlt="day's playlist"
+          />
         </div>
       </div>
     </div>

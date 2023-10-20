@@ -189,7 +189,7 @@
   text-align: end;
 }
 
-.playlist__item {
+/* .playlist__item {
   width: 100%;
   display: block;
   margin-bottom: 12px;
@@ -311,4 +311,4 @@
   line-height: 24px;
   text-align: right;
   color: #696969;
-}
+} */
