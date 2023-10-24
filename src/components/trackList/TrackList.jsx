@@ -1,8 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import "./trackList.css";
 import { Track } from "../track/Track";
+import { FilterByAuthor } from "../filterByAuthor/FilterByAuthor";
+import { FilterByYear } from "../filterByYear/FilterByYear";
+import { FilterByGenre } from "../filterByGenre/FilterByGenre";
 
 export const TrackList = (props) => {
+  const [filterBy, setFilterBy] = useState("");
+
+  const handleFilterByAuthor = () => {
+    if (filterBy !== "author") {
+      setFilterBy("author");
+    } else {
+      setFilterBy("");
+    }
+  };
+
+  const handleFilterByYear = () => {
+    if (filterBy !== "year") {
+      setFilterBy("year");
+    } else {
+      setFilterBy("");
+    }
+  };
+
+  const handleFilterByGenre = () => {
+    if (filterBy !== "genre") {
+      setFilterBy("genre");
+    } else {
+      setFilterBy("");
+    }
+  };
+
   return (
     <div className="main__centerblock centerblock">
       <div className="centerblock__search search">
@@ -19,11 +48,47 @@ export const TrackList = (props) => {
       <h2 className="centerblock__h2">Треки</h2>
       <div className="centerblock__filter filter">
         <div className="filter__title">Искать по:</div>
-        <div className="filter__button button-author _btn-text">
-          исполнителю
+        <div className="filter__wrap">
+          <div
+            className={
+              filterBy === "author"
+                ? "filter__button button-genre _btn-text filter_active"
+                : "filter__button button-genre _btn-text"
+            }
+            onClick={handleFilterByAuthor}
+          >
+            исполнителю
+          </div>
+          {filterBy === "author" ? <FilterByAuthor /> : ""}
         </div>
-        <div className="filter__button button-year _btn-text">году выпуска</div>
-        <div className="filter__button button-genre _btn-text">жанру</div>
+
+        <div className="filter__wrap">
+          <div
+            className={
+              filterBy === "year"
+                ? "filter__button button-genre _btn-text filter_active"
+                : "filter__button button-genre _btn-text"
+            }
+            onClick={handleFilterByYear}
+          >
+            году выпуска
+          </div>
+          {filterBy === "year" ? <FilterByYear /> : ""}
+        </div>
+
+        <div className="filter__wrap">
+          <div
+            className={
+              filterBy === "genre"
+                ? "filter__button button-genre _btn-text filter_active"
+                : "filter__button button-genre _btn-text"
+            }
+            onClick={handleFilterByGenre}
+          >
+            жанру
+          </div>
+          {filterBy === "genre" ? <FilterByGenre /> : ""}
+        </div>
       </div>
       <div className="centerblock__content">
         <div className="content__title playlist-title">
