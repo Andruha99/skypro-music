@@ -1,7 +1,7 @@
 import React from "react";
 import "./audioPlayer.css";
 
-export const AudioPlayer = () => {
+export const AudioPlayer = (props) => {
   return (
     <div className="bar">
       <div className="bar__content">
@@ -44,14 +44,22 @@ export const AudioPlayer = () => {
                   </svg>
                 </div>
                 <div className="track-play__author">
-                  <a className="track-play__author-link" href="http://">
-                    Ты та...
-                  </a>
+                  {props.isLoading ? (
+                    <div className="skeleton-audioplayer-text skeleton"></div>
+                  ) : (
+                    <a className="track-play__author-link" href="http://">
+                      Ты та...
+                    </a>
+                  )}
                 </div>
                 <div className="track-play__album">
-                  <a className="track-play__album-link" href="http://">
-                    Баста
-                  </a>
+                  {props.isLoading ? (
+                    <div className="skeleton-audioplayer-text skeleton"></div>
+                  ) : (
+                    <a className="track-play__album-link" href="http://">
+                      Баста
+                    </a>
+                  )}
                 </div>
               </div>
 
