@@ -2,7 +2,7 @@ import React from "react";
 import "./sideBar.css";
 import { SideBarItem } from "../sideBarItem/SideBarItem";
 
-export const SideBar = () => {
+export const SideBar = (props) => {
   return (
     <div className="main__sidebar sidebar">
       <div className="sidebar__personal">
@@ -19,18 +19,21 @@ export const SideBar = () => {
             linkTo="#"
             imgSrc="img/playlist01.png"
             imgAlt="day's playlist"
+            isLoading={props.isLoading}
           />
 
           <SideBarItem
             linkTo="#"
             imgSrc="img/playlist02.png"
             imgAlt="day's playlist"
+            isLoading={props.isLoading}
           />
 
           <SideBarItem
             linkTo="#"
             imgSrc="img/playlist03.png"
             imgAlt="day's playlist"
+            isLoading={props.isLoading}
           />
         </div>
       </div>
