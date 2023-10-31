@@ -1,4 +1,15 @@
-.centerblock__search {
+import styled from "styled-components";
+import { StyledBtnText } from "../../style";
+
+export const MainCenterBlock = styled.div`
+  width: auto;
+  -webkit-box-flex: 3;
+  -ms-flex-positive: 3;
+  flex-grow: 3;
+  padding: 20px 40px 20px 111px;
+`;
+
+export const CenterBlockSearch = styled.div`
   width: 100%;
   border-bottom: 1px solid #4e4e4e;
   margin-bottom: 51px;
@@ -12,18 +23,18 @@
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-}
+`;
 
-.centerblock__h2 {
+export const CenterBlockH2 = styled.h2`
   font-style: normal;
   font-weight: 400;
   font-size: 64px;
   line-height: 72px;
   letter-spacing: -0.8px;
   margin-bottom: 45px;
-}
+`;
 
-.centerblock__filter {
+export const CenterBlockFilter = styled.div`
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -35,9 +46,9 @@
   -ms-flex-align: center;
   align-items: center;
   margin-bottom: 51px;
-}
+`;
 
-.centerblock__content {
+export const CenterBlockContent = styled.div`
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -45,17 +56,17 @@
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
-}
+`;
 
-.search__svg {
+export const SearchSvg = styled.svg`
   width: 17px;
   height: 17px;
   margin-right: 5px;
   stroke: #ffffff;
   fill: transparent;
-}
+`;
 
-.search__text {
+export const SearchText = styled.input`
   -webkit-box-flex: 100;
   -ms-flex-positive: 100;
   flex-grow: 100;
@@ -67,62 +78,62 @@
   font-size: 16px;
   line-height: 24px;
   color: #ffffff;
-}
 
-.search__text::-webkit-input-placeholder {
-  background-color: transparent;
-  color: #ffffff;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-}
+  &::-webkit-input-placeholder {
+    background-color: transparent;
+    color: #ffffff;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+  }
 
-.search__text:-ms-input-placeholder {
-  background-color: transparent;
-  color: #ffffff;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-}
+  &:-ms-input-placeholder {
+    background-color: transparent;
+    color: #ffffff;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+  }
 
-.search__text::-ms-input-placeholder {
-  background-color: transparent;
-  color: #ffffff;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-}
+  &::-ms-input-placeholder {
+    background-color: transparent;
+    color: #ffffff;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+  }
 
-.search__text::placeholder {
-  background-color: transparent;
-  color: #ffffff;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-}
+  &::placeholder {
+    background-color: transparent;
+    color: #ffffff;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+  }
+`;
 
-.filter__wrap {
+export const FilterWrap = styled.div`
   position: relative;
   margin-right: 10px;
-}
 
-.filter__wrap:not(:last-child) {
-  margin-right: 10px;
-}
+  &:not(:last-child) {
+    margin-right: 10px;
+  }
+`;
 
-.filter__title {
+export const FilterTitle = styled.div`
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
   margin-right: 15px;
-}
+`;
 
-.filter__button {
+export const FilterButton = styled(StyledBtnText)`
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -130,14 +141,14 @@
   border: 1px solid #ffffff;
   border-radius: 60px;
   padding: 6px 20px;
-}
+`;
 
-.filter_active {
+export const FilterActive = styled(FilterButton)`
   color: #b672ff;
   border-color: #b672ff;
-}
+`;
 
-.content__title {
+export const ContentTitle = styled.div`
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -152,9 +163,9 @@
   -ms-flex-pack: justify;
   justify-content: space-between;
   margin-bottom: 24px;
-}
+`;
 
-.content__playlist {
+export const ContentPlaylist = styled.div`
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -163,9 +174,9 @@
   -ms-flex-direction: column;
   flex-direction: column;
   overflow-y: auto;
-}
+`;
 
-.playlist-title__col {
+export const PlayListTitleCol = styled.div`
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -173,41 +184,41 @@
   letter-spacing: 2px;
   color: #696969;
   text-transform: uppercase;
-}
+`;
 
-.playlist-title__svg {
+export const PlaylistTitleSvg = styled.svg`
   width: 12px;
   height: 12px;
   fill: transparent;
   stroke: #696969;
-}
+`;
 
-.col01 {
+export const Col1 = styled(PlayListTitleCol)`
   width: 447px;
-}
+`;
 
-.col02 {
+export const Col2 = styled(PlayListTitleCol)`
   width: 321px;
-}
+`;
 
-.col03 {
+export const Col3 = styled(PlayListTitleCol)`
   width: 245px;
-}
+`;
 
-.col04 {
+export const Col4 = styled(PlayListTitleCol)`
   width: 60px;
   text-align: end;
-}
+`;
 
-.filter__menu {
+export const FilterMenu = styled.div`
   position: absolute;
   margin-top: 10px;
   padding: 34px;
   background-color: #313131;
   border-radius: 12px;
-}
+`;
 
-.filter__list {
+export const FilterList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 28px;
@@ -215,31 +226,31 @@
   max-height: 305px;
   overflow-y: auto;
   padding-right: 24px;
-}
 
-.filter__list::-webkit-scrollbar {
-  width: 4px;
-}
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
 
-.filter__list::-webkit-scrollbar-track {
-  background: #4b4949;
-  border-radius: 10px;
-}
+  &::-webkit-scrollbar-track {
+    background: #4b4949;
+    border-radius: 10px;
+  }
 
-.filter__list::-webkit-scrollbar-thumb {
-  background-color: #ffffff;
-  border-radius: 10px;
-}
+  &::-webkit-scrollbar-thumb {
+    background-color: #ffffff;
+    border-radius: 10px;
+  }
+`;
 
-.filter__item {
+export const FilterItem = styled.li`
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
   line-height: 24px;
-}
 
-.filter__item:hover {
-  cursor: pointer;
-  color: #b672ff;
-  text-decoration: underline;
-}
+  &:hover {
+    cursor: pointer;
+    color: #b672ff;
+    text-decoration: underline;
+  }
+`;

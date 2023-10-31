@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import "./trackList.css";
 import { Track } from "../track/Track";
 import { FilterByAuthor } from "../filterByAuthor/FilterByAuthor";
 import { FilterByYear } from "../filterByYear/FilterByYear";
 import { FilterByGenre } from "../filterByGenre/FilterByGenre";
+import * as S from "./styles";
 
 export const TrackList = (props) => {
   const [filterBy, setFilterBy] = useState("");
@@ -33,75 +33,63 @@ export const TrackList = (props) => {
   };
 
   return (
-    <div className="main__centerblock centerblock">
-      <div className="centerblock__search search">
-        <svg className="search__svg">
+    <S.MainCenterBlock>
+      <S.CenterBlockSearch>
+        <S.SearchSvg>
           <use xlinkHref="img/icon/sprite.svg#icon-search"></use>
-        </svg>
-        <input
-          className="search__text"
-          type="search"
-          placeholder="Поиск"
-          name="search"
-        />
-      </div>
-      <h2 className="centerblock__h2">Треки</h2>
-      <div className="centerblock__filter filter">
-        <div className="filter__title">Искать по:</div>
-        <div className="filter__wrap">
-          <div
-            className={
-              filterBy === "author"
-                ? "filter__button button-genre _btn-text filter_active"
-                : "filter__button button-genre _btn-text"
-            }
-            onClick={handleFilterByAuthor}
-          >
-            исполнителю
-          </div>
+        </S.SearchSvg>
+        <S.SearchText type="search" placeholder="Поиск" name="search" />
+      </S.CenterBlockSearch>
+      <S.CenterBlockH2>Треки</S.CenterBlockH2>
+      <S.CenterBlockFilter>
+        <S.FilterTitle>Искать по:</S.FilterTitle>
+        <S.FilterWrap>
+          {filterBy === "author" ? (
+            <S.FilterActive onClick={handleFilterByAuthor}>
+              исполнителю
+            </S.FilterActive>
+          ) : (
+            <S.FilterButton onClick={handleFilterByAuthor}>
+              исполнителю
+            </S.FilterButton>
+          )}
           {filterBy === "author" ? <FilterByAuthor /> : ""}
-        </div>
+        </S.FilterWrap>
 
-        <div className="filter__wrap">
-          <div
-            className={
-              filterBy === "year"
-                ? "filter__button button-genre _btn-text filter_active"
-                : "filter__button button-genre _btn-text"
-            }
-            onClick={handleFilterByYear}
-          >
-            году выпуска
-          </div>
+        <S.FilterWrap>
+          {filterBy === "year" ? (
+            <S.FilterActive onClick={handleFilterByYear}>
+              году выпуска
+            </S.FilterActive>
+          ) : (
+            <S.FilterButton onClick={handleFilterByYear}>
+              году выпуска
+            </S.FilterButton>
+          )}
           {filterBy === "year" ? <FilterByYear /> : ""}
-        </div>
+        </S.FilterWrap>
 
-        <div className="filter__wrap">
-          <div
-            className={
-              filterBy === "genre"
-                ? "filter__button button-genre _btn-text filter_active"
-                : "filter__button button-genre _btn-text"
-            }
-            onClick={handleFilterByGenre}
-          >
-            жанру
-          </div>
+        <S.FilterWrap>
+          {filterBy === "genre" ? (
+            <S.FilterActive onClick={handleFilterByGenre}>жанру</S.FilterActive>
+          ) : (
+            <S.FilterButton onClick={handleFilterByGenre}>жанру</S.FilterButton>
+          )}
           {filterBy === "genre" ? <FilterByGenre /> : ""}
-        </div>
-      </div>
-      <div className="centerblock__content">
-        <div className="content__title playlist-title">
-          <div className="playlist-title__col col01">Трек</div>
-          <div className="playlist-title__col col02">ИСПОЛНИТЕЛЬ</div>
-          <div className="playlist-title__col col03">АЛЬБОМ</div>
-          <div className="playlist-title__col col04">
-            <svg className="playlist-title__svg" alt="time">
+        </S.FilterWrap>
+      </S.CenterBlockFilter>
+      <S.CenterBlockContent>
+        <S.ContentTitle>
+          <S.Col1>Трек</S.Col1>
+          <S.Col2>ИСПОЛНИТЕЛЬ</S.Col2>
+          <S.Col3>АЛЬБОМ</S.Col3>
+          <S.Col4>
+            <S.PlaylistTitleSvg alt="time">
               <use xlinkHref="img/icon/sprite.svg#icon-watch"></use>
-            </svg>
-          </div>
-        </div>
-        <div className="content__playlist playlist">
+            </S.PlaylistTitleSvg>
+          </S.Col4>
+        </S.ContentTitle>
+        <S.ContentPlaylist>
           <Track
             trackTitle="Guilt"
             author="Nero"
@@ -254,8 +242,8 @@ export const TrackList = (props) => {
             trackTitleSpan=""
             isLoading={props.isLoading}
           />
-        </div>
-      </div>
-    </div>
+        </S.ContentPlaylist>
+      </S.CenterBlockContent>
+    </S.MainCenterBlock>
   );
 };

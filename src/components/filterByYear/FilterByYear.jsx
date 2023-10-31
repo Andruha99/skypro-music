@@ -1,14 +1,14 @@
 import React from "react";
-import "../trackList/trackList.css";
+import * as S from "../trackList/styles";
 
 export const FilterByYear = () => {
   return (
-    <div className="filter__menu">
-      <ul className="filter__list">
-        <li className="filter__item">По умолчанию</li>
-        <li className="filter__item">Сначала новые</li>
-        <li className="filter__item">Сначала старые</li>
-      </ul>
-    </div>
+    <S.FilterMenu className="filter__menu">
+      <S.FilterList className="filter__list">
+        <S.FilterItem className="filter__item">По умолчанию</S.FilterItem>
+        <S.FilterItem className="filter__item">Сначала новые</S.FilterItem>
+        <S.FilterItem className="filter__item">Сначала старые</S.FilterItem>
+      </S.FilterList>
+    </S.FilterMenu>
   );
 };
