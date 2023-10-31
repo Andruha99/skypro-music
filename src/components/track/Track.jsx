@@ -1,6 +1,7 @@
 import React from "react";
 import "../../App.css";
 import * as S from "./styles";
+import { SkeletonTrackAuthor, SkeletonTrackText } from "../skeleton/styles";
 
 export const Track = (props) => {
   return (
@@ -13,7 +14,7 @@ export const Track = (props) => {
             </S.TrackTitleSvg>
           </S.TrackTitleImage>
           {props.isLoading ? (
-            <div className="skeleton-track-text skeleton"></div>
+            <SkeletonTrackText />
           ) : (
             <div className="track__title-text">
               <S.TrackTitleLink href="http://">
@@ -25,7 +26,7 @@ export const Track = (props) => {
         </S.TrackTitle>
 
         {props.isLoading ? (
-          <div className="skeleton-track-author skeleton"></div>
+          <SkeletonTrackAuthor />
         ) : (
           <S.TrackAuthor>
             <S.TrackAuthorLink href="http://">{props.author}</S.TrackAuthorLink>
@@ -34,7 +35,7 @@ export const Track = (props) => {
 
         <S.TrackAlbum>
           {props.isLoading ? (
-            <div className="skeleton-track-author skeleton"></div>
+            <SkeletonTrackAuthor />
           ) : (
             <S.TrackAlbumLink href="http://">
               {props.trackAlbum}

@@ -1,5 +1,6 @@
 import React from "react";
 import * as S from "./styles";
+import { SkeletonAudioPlayerText } from "../skeleton/styles";
 
 export const AudioPlayer = (props) => {
   return (
@@ -14,7 +15,7 @@ export const AudioPlayer = (props) => {
                   <use xlinkHref="img/icon/sprite.svg#icon-prev"></use>
                 </S.BtnPrevSvg>
               </S.BtnPrev>
-              <S.BtnPlay className="_btn">
+              <S.BtnPlay>
                 <S.BtnPlaySvg alt="play">
                   <use xlinkHref="img/icon/sprite.svg#icon-play"></use>
                 </S.BtnPlaySvg>
@@ -24,12 +25,12 @@ export const AudioPlayer = (props) => {
                   <use xlinkHref="img/icon/sprite.svg#icon-next"></use>
                 </S.BtnNextSvg>
               </S.BtnNext>
-              <S.BtnRepeat className="_btn-icon">
+              <S.BtnRepeat>
                 <S.BtnRepeatSvg alt="repeat">
                   <use xlinkHref="img/icon/sprite.svg#icon-repeat"></use>
                 </S.BtnRepeatSvg>
               </S.BtnRepeat>
-              <S.BtnShuffle className="_btn-icon">
+              <S.BtnShuffle>
                 <S.ShuffleSvg alt="shuffle">
                   <use xlinkHref="img/icon/sprite.svg#icon-shuffle"></use>
                 </S.ShuffleSvg>
@@ -45,7 +46,7 @@ export const AudioPlayer = (props) => {
                 </S.TrackPlayImage>
                 <S.TrackPlayAuthor>
                   {props.isLoading ? (
-                    <div className="skeleton-audioplayer-text skeleton"></div>
+                    <SkeletonAudioPlayerText />
                   ) : (
                     <S.TrackPlayAuthorLink href="http://">
                       Ты та...
@@ -54,7 +55,7 @@ export const AudioPlayer = (props) => {
                 </S.TrackPlayAuthor>
                 <S.TrackPlayAlbum>
                   {props.isLoading ? (
-                    <div className="skeleton-audioplayer-text skeleton"></div>
+                    <SkeletonAudioPlayerText />
                   ) : (
                     <S.TrackPlayAlbumLink href="http://">
                       Баста
@@ -64,12 +65,12 @@ export const AudioPlayer = (props) => {
               </S.TrackPlayContain>
 
               <S.TrackPlayLikeDis>
-                <S.TrackPlayLike className="_btn-icon">
+                <S.TrackPlayLike>
                   <S.TrackPlayLikeSvg alt="like">
                     <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
                   </S.TrackPlayLikeSvg>
                 </S.TrackPlayLike>
-                <S.TrackPlayDislike className="_btn-icon">
+                <S.TrackPlayDislike>
                   <S.TrackPlayDislikeSvg alt="dislike">
                     <use xlinkHref="img/icon/sprite.svg#icon-dislike"></use>
                   </S.TrackPlayDislikeSvg>
@@ -84,12 +85,8 @@ export const AudioPlayer = (props) => {
                   <use xlinkHref="img/icon/sprite.svg#icon-volume"></use>
                 </S.VolumeSvg>
               </S.VolumeImage>
-              <S.VolumeProgress className="_btn">
-                <S.VolumeProgressLine
-                  className="_btn"
-                  type="range"
-                  name="range"
-                />
+              <S.VolumeProgress>
+                <S.VolumeProgressLine type="range" name="range" />
               </S.VolumeProgress>
             </S.VolumeContent>
           </S.VolumeBlock>

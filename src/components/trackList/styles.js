@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { StyledBtnText } from "../../style";
+import { StyledBtnText } from "../styledBtn/styles.js";
 
 export const MainCenterBlock = styled.div`
   width: auto;

@@ -97,6 +97,7 @@ export const BtnPrevSvg = styled.svg`
 
 export const BtnPlay = styled(PlayerButton)`
   margin-right: 23px;
+  cursor: pointer;
 `;
 
 export const BtnPlaySvg = styled.svg`
@@ -119,6 +120,24 @@ export const BtnNextSvg = styled.svg`
 
 export const BtnRepeat = styled(PlayerButton)`
   margin-right: 24px;
+
+  &:hover svg {
+    fill: transparent;
+    stroke: #acacac;
+    cursor: pointer;
+  }
+
+  &:active svg {
+    fill: transparent;
+    stroke: #ffffff;
+    cursor: pointer;
+  }
+
+  &:active {
+    fill: #696969;
+    stroke: #ffffff;
+    cursor: pointer;
+  }
 `;
 
 export const BtnRepeatSvg = styled.svg`
@@ -135,6 +154,23 @@ export const BtnShuffle = styled(PlayerButton)`
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  &:hover svg {
+    fill: transparent;
+    stroke: #acacac;
+    cursor: pointer;
+  }
+
+  &:active svg {
+    fill: transparent;
+    stroke: #ffffff;
+    cursor: pointer;
+  }
+
+  &:active {
+    fill: #696969;
+    stroke: #ffffff;
+    cursor: pointer;
+  }
 `;
 
 export const ShuffleSvg = styled.svg`
@@ -240,6 +276,24 @@ export const TrackPlayLikeDis = styled.div`
 
 export const TrackPlayLike = styled.div`
   padding: 5px;
+
+  &:hover svg {
+    fill: transparent;
+    stroke: #acacac;
+    cursor: pointer;
+  }
+
+  &:active svg {
+    fill: transparent;
+    stroke: #ffffff;
+    cursor: pointer;
+  }
+
+  &:active {
+    fill: #696969;
+    stroke: #ffffff;
+    cursor: pointer;
+  }
 `;
 
 export const TrackPlayLikeSvg = styled.svg`
@@ -290,8 +344,10 @@ export const VolumeSvg = styled.svg`
 
 export const VolumeProgress = styled.div`
   width: 109px;
+  cursor: pointer;
 `;
 
 export const VolumeProgressLine = styled.input`
   width: 109px;
+  cursor: pointer;
 `;

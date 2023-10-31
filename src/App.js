@@ -4,6 +4,8 @@ import { AudioPlayer } from "./components/audioPlayer/AudioPlayer";
 import { NavMenu } from "./components/navMenu/NavMenu";
 import { SideBar } from "./components/sideBar/SideBar";
 import { TrackList } from "./components/trackList/TrackList";
+import { GlobalStyle } from "./globalStyles";
+import { StyledContainer, StyledMain, StyledWrapper } from "./style";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -15,17 +17,20 @@ function App() {
   }, []);
 
   return (
-    <div className="wrapper">
-      <div className="container">
-        <main className="main">
-          <NavMenu />
-          <TrackList isLoading={isLoading} />
-          <SideBar isLoading={isLoading} />
-        </main>
-        <AudioPlayer isLoading={isLoading} />
-        <footer className="footer"></footer>
-      </div>
-    </div>
+    <>
+      <GlobalStyle />
+      <StyledWrapper>
+        <StyledContainer>
+          <StyledMain>
+            <NavMenu />
+            <TrackList isLoading={isLoading} />
+            <SideBar isLoading={isLoading} />
+          </StyledMain>
+          <AudioPlayer isLoading={isLoading} />
+          <footer></footer>
+        </StyledContainer>
+      </StyledWrapper>
+    </>
   );
 }
 
