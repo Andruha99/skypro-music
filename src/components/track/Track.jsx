@@ -1,80 +1,59 @@
 import React from "react";
-import "./track.css";
 import "../../App.css";
-import {
-  StyledPlayListTrack,
-  StyledPlaylistItem,
-  StyledTrackAlbum,
-  StyledTrackAlbumLink,
-  StyledTrackAuthor,
-  StyledTrackAuthorLink,
-  StyledTrackTimeSvg,
-  StyledTrackTimeText,
-  StyledTrackTitle,
-  StyledTrackTitleImage,
-  StyledTrackTitleSpan,
-  StyledTrackTitleSvg,
-  TrackTitleLink,
-} from "./styles";
+import * as S from "./styles";
 
 export const Track = (props) => {
   return (
-    <StyledPlaylistItem>
-      <StyledPlayListTrack>
-        <StyledTrackTitle>
-          <StyledTrackTitleImage>
-            <StyledTrackTitleSvg alt="music">
+    <S.PlaylistItem>
+      <S.PlayListTrack>
+        <S.TrackTitle>
+          <S.TrackTitleImage>
+            <S.TrackTitleSvg alt="music">
               <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
-            </StyledTrackTitleSvg>
-          </StyledTrackTitleImage>
+            </S.TrackTitleSvg>
+          </S.TrackTitleImage>
           {props.isLoading ? (
             <div className="skeleton-track-text skeleton"></div>
           ) : (
             <div className="track__title-text">
-              <TrackTitleLink href="http://">
+              <S.TrackTitleLink href="http://">
                 {props.trackTitle}
-                <StyledTrackTitleSpan>
-                  {props.trackTitleSpan}
-                </StyledTrackTitleSpan>
-              </TrackTitleLink>
+                <S.TrackTitleSpan>{props.trackTitleSpan}</S.TrackTitleSpan>
+              </S.TrackTitleLink>
             </div>
           )}
-        </StyledTrackTitle>
+        </S.TrackTitle>
 
         {props.isLoading ? (
           <div className="skeleton-track-author skeleton"></div>
         ) : (
-          <StyledTrackAuthor>
-            <StyledTrackAuthorLink href="http://">
-              {props.author}
-            </StyledTrackAuthorLink>
-          </StyledTrackAuthor>
+          <S.TrackAuthor>
+            <S.TrackAuthorLink href="http://">{props.author}</S.TrackAuthorLink>
+          </S.TrackAuthor>
         )}
 
-        <StyledTrackAlbum>
+        <S.TrackAlbum>
           {props.isLoading ? (
             <div className="skeleton-track-author skeleton"></div>
           ) : (
-            <StyledTrackAlbumLink href="http://">
+            <S.TrackAlbumLink href="http://">
               {props.trackAlbum}
-            </StyledTrackAlbumLink>
+            </S.TrackAlbumLink>
           )}
-        </StyledTrackAlbum>
+        </S.TrackAlbum>
         <div className="track__time">
-          <StyledTrackTimeSvg alt="time">
+          <S.TrackTimeSvg alt="time">
             <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
-          </StyledTrackTimeSvg>
+          </S.TrackTimeSvg>
           {props.isLoading ? (
-            <StyledTrackTimeText className="track__time-text">
-              0:00
-            </StyledTrackTimeText>
+            <S.TrackTimeText className="track__time-text">0:00</S.TrackTimeText>
           ) : (
-            <StyledTrackTimeText className="track__time-text">
+            <S.TrackTimeText className="track__time-text">
               {props.trackTime}
-            </StyledTrackTimeText>
+            </S.TrackTimeText>
           )}
         </div>
-      </StyledPlayListTrack>
-    </StyledPlaylistItem>
+      </S.PlayListTrack>
+    </S.PlaylistItem>
   );
 };

@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
-export const StyledPlaylistItem = styled.div`
+export const PlaylistItem = styled.div`
   width: 100%;
   display: block;
   margin-bottom: 12px;
 `;
 
-export const StyledPlayListTrack = styled.div`
+export const PlayListTrack = styled.div`
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -22,7 +22,7 @@ export const StyledPlayListTrack = styled.div`
   align-items: center;
 `;
 
-export const StyledTrackTitle = styled.div`
+export const TrackTitle = styled.div`
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -36,7 +36,7 @@ export const StyledTrackTitle = styled.div`
   width: 447px;
 `;
 
-export const StyledTrackTitleImage = styled.div`
+export const TrackTitleImage = styled.div`
   width: 51px;
   height: 51px;
   padding: 16px;
@@ -53,7 +53,7 @@ export const StyledTrackTitleImage = styled.div`
   margin-right: 17px;
 `;
 
-export const StyledTrackTitleSvg = styled.svg`
+export const TrackTitleSvg = styled.svg`
   width: 18px;
   height: 17px;
   fill: transparent;
@@ -68,7 +68,7 @@ export const TrackTitleLink = styled.a`
   color: #ffffff;
 `;
 
-export const StyledTrackTitleSpan = styled.span`
+export const TrackTitleSpan = styled.span`
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -76,7 +76,7 @@ export const StyledTrackTitleSpan = styled.span`
   color: #4e4e4e;
 `;
 
-export const StyledTrackAuthor = styled.div`
+export const TrackAuthor = styled.div`
   width: 321px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -86,7 +86,7 @@ export const StyledTrackAuthor = styled.div`
   justify-content: flex-start;
 `;
 
-export const StyledTrackAuthorLink = styled.a`
+export const TrackAuthorLink = styled.a`
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -95,11 +95,11 @@ export const StyledTrackAuthorLink = styled.a`
   text-align: left;
 `;
 
-export const StyledTrackAlbum = styled.div`
+export const TrackAlbum = styled.div`
   width: 245px;
 `;
 
-export const StyledTrackAlbumLink = styled.a`
+export const TrackAlbumLink = styled.a`
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -107,7 +107,7 @@ export const StyledTrackAlbumLink = styled.a`
   color: #696969;
 `;
 
-export const StyledTrackTimeSvg = styled.svg`
+export const TrackTimeSvg = styled.svg`
   width: 14px;
   height: 12px;
   margin-right: 17px;
@@ -115,7 +115,7 @@ export const StyledTrackTimeSvg = styled.svg`
   stroke: #696969;
 `;
 
-export const StyledTrackTimeText = styled.span`
+export const TrackTimeText = styled.span`
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
