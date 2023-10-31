@@ -1,5 +1,4 @@
 import React from "react";
-import "../../App.css";
 import * as S from "./styles";
 import { SkeletonTrackAuthor, SkeletonTrackText } from "../skeleton/styles";
 
