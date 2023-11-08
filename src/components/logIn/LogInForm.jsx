@@ -1,34 +1,25 @@
 import React from "react";
-import {
-  StyledLogInContainer,
-  StyledLogInWrap,
-  StyledFormLogo,
-  StyledForm,
-  StyledFormInput,
-  StyledButtonsContainer,
-  StyledEnterButton,
-  StyledRegisterButton,
-} from "./styles";
+import * as S from "./styles";
 import { Link } from "react-router-dom";
 
 export const LogInForm = () => {
   return (
-    <StyledLogInWrap>
-      <StyledLogInContainer>
-        <StyledFormLogo src="img/logo_modal.png" />
-        <StyledForm>
-          <StyledFormInput type="email" placeholder="Почта" />
-          <StyledFormInput type="password" placeholder="Пароль" />
-          <StyledButtonsContainer>
-            <StyledEnterButton type="submit">Войти</StyledEnterButton>
+    <S.LogInWrap>
+      <S.LogInContainer>
+        <S.FormLogo src="img/logo_modal.png" />
+        <S.Form>
+          <S.FormInput type="email" placeholder="Почта" />
+          <S.FormInput type="password" placeholder="Пароль" />
+          <S.ButtonsContainer>
+            <S.EnterButton type="submit">Войти</S.EnterButton>
             <Link to="/register">
-              <StyledRegisterButton type="button">
+              <S.RegisterButton type="button">
                 Зарегистрироваться
-              </StyledRegisterButton>
+              </S.RegisterButton>
             </Link>
-          </StyledButtonsContainer>
-        </StyledForm>
-      </StyledLogInContainer>
-    </StyledLogInWrap>
+          </S.ButtonsContainer>
+        </S.Form>
+      </S.LogInContainer>
+    </S.LogInWrap>
   );
 };
