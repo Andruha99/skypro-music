@@ -1,12 +1,10 @@
 import React from "react";
-import "./menuItem.css";
+import * as S from "./styles";
 
 export const MenuItem = (props) => {
   return (
-    <li className="menu__item">
-      <a href={props.linkTo} className="menu__link">
-        {props.name}
-      </a>
-    </li>
+    <S.MenuItem>
+      <S.MenuLink href={props.linkTo}>{props.name}</S.MenuLink>
+    </S.MenuItem>
   );
 };

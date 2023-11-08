@@ -1,20 +1,20 @@
 import React from "react";
-import "./sideBar.css";
 import { SideBarItem } from "../sideBarItem/SideBarItem";
+import * as S from "./styles";
 
 export const SideBar = (props) => {
   return (
-    <div className="main__sidebar sidebar">
-      <div className="sidebar__personal">
-        <p className="sidebar__personal-name">Sergey.Ivanov</p>
-        <div className="sidebar__icon">
+    <S.MainSidebar>
+      <S.SideBarPersonal>
+        <S.SideBarPersonalName>Sergey.Ivanov</S.SideBarPersonalName>
+        <S.SideBarIcon>
           <svg alt="logout">
             <use xlinkHref="img/icon/sprite.svg#logout"></use>
           </svg>
-        </div>
-      </div>
-      <div className="sidebar__block">
-        <div className="sidebar__list">
+        </S.SideBarIcon>
+      </S.SideBarPersonal>
+      <S.SideBarBlock>
+        <S.SideBarList className="sidebar__list">
           <SideBarItem
             linkTo="#"
             imgSrc="img/playlist01.png"
@@ -35,8 +35,8 @@ export const SideBar = (props) => {
             imgAlt="day's playlist"
             isLoading={props.isLoading}
           />
-        </div>
-      </div>
-    </div>
+        </S.SideBarList>
+      </S.SideBarBlock>
+    </S.MainSidebar>
   );
 };

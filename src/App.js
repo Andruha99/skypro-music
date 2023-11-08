@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import "./App.css";
 import { AudioPlayer } from "./components/audioPlayer/AudioPlayer";
 import { NavMenu } from "./components/navMenu/NavMenu";
 import { SideBar } from "./components/sideBar/SideBar";
 import { TrackList } from "./components/trackList/TrackList";
+import { GlobalStyle } from "./globalStyles";
+import * as S from "./style";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -15,17 +16,20 @@ function App() {
   }, []);
 
   return (
-    <div className="wrapper">
-      <div className="container">
-        <main className="main">
-          <NavMenu />
-          <TrackList isLoading={isLoading} />
-          <SideBar isLoading={isLoading} />
-        </main>
-        <AudioPlayer isLoading={isLoading} />
-        <footer className="footer"></footer>
-      </div>
-    </div>
+    <>
+      <GlobalStyle />
+      <S.Wrapper>
+        <S.Container>
+          <S.Main>
+            <NavMenu />
+            <TrackList isLoading={isLoading} />
+            <SideBar isLoading={isLoading} />
+          </S.Main>
+          <AudioPlayer isLoading={isLoading} />
+          <footer></footer>
+        </S.Container>
+      </S.Wrapper>
+    </>
   );
 }
 

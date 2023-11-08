@@ -1,17 +1,21 @@
 import React from "react";
-import "./sideBarItem.css";
-import "../../App.css";
+import { SideBarImg, StyledSideBarItem, StyledSideBarLink } from "./styles";
+import { StyledSkeleton } from "../skeleton/styles";
 
 export const SideBarItem = (props) => {
   return (
-    <div className="sidebar__item">
+    <StyledSideBarItem>
       {props.isLoading ? (
-        <div className="skeleton"></div>
+        <StyledSkeleton />
       ) : (
-        <a className="sidebar__link" href={props.linkTo}>
-          <img className="sidebar__img" src={props.imgSrc} alt={props.imgAlt} />
-        </a>
+        <StyledSideBarLink href={props.linkTo}>
+          <SideBarImg
+            className="sidebar__img"
+            src={props.imgSrc}
+            alt={props.imgAlt}
+          />
+        </StyledSideBarLink>
       )}
-    </div>
+    </StyledSideBarItem>
   );
 };
