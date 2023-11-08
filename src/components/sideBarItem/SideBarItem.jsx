@@ -10,13 +10,11 @@ export const SideBarItem = (props) => {
         <StyledSkeleton />
       ) : (
         <Link to={`/category/${props.linkTo}`}>
-          <StyledSideBarLink>
-            <SideBarImg
-              className="sidebar__img"
-              src={props.imgSrc}
-              alt={props.imgAlt}
-            />
-          </StyledSideBarLink>
+          <SideBarImg
+            className="sidebar__img"
+            src={props.imgSrc}
+            alt={props.imgAlt}
+          />
         </Link>
       )}
     </StyledSideBarItem>

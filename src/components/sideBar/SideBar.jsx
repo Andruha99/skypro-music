@@ -18,6 +18,7 @@ export const SideBar = (props) => {
           {props.categories.map((category) => {
             return (
               <SideBarItem
+                key={category.id}
                 linkTo={`${category.id}`}
                 imgSrc={`img/playlist0${category.id}.png`}
                 imgAlt={`${category.nameCategory}`}
