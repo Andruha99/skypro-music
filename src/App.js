@@ -5,6 +5,8 @@ import { SideBar } from "./components/sideBar/SideBar";
 import { TrackList } from "./components/trackList/TrackList";
 import { GlobalStyle } from "./globalStyles";
 import * as S from "./style";
+import { AppRoutes } from "./routes";
+import { CATEGORIES } from "./constants";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -18,12 +20,13 @@ function App() {
   return (
     <>
       <GlobalStyle />
+      <AppRoutes />
       <S.Wrapper>
         <S.Container>
           <S.Main>
             <NavMenu />
             <TrackList isLoading={isLoading} />
-            <SideBar isLoading={isLoading} />
+            <SideBar isLoading={isLoading} categories={CATEGORIES} />
           </S.Main>
           <AudioPlayer isLoading={isLoading} />
           <footer></footer>

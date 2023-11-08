@@ -1,6 +1,7 @@
 import React from "react";
 import { SideBarImg, StyledSideBarItem, StyledSideBarLink } from "./styles";
 import { StyledSkeleton } from "../skeleton/styles";
+import { Link } from "react-router-dom";
 
 export const SideBarItem = (props) => {
   return (
@@ -8,13 +9,15 @@ export const SideBarItem = (props) => {
       {props.isLoading ? (
         <StyledSkeleton />
       ) : (
-        <StyledSideBarLink href={props.linkTo}>
-          <SideBarImg
-            className="sidebar__img"
-            src={props.imgSrc}
-            alt={props.imgAlt}
-          />
-        </StyledSideBarLink>
+        <Link to={`/category/${props.linkTo}`}>
+          <StyledSideBarLink>
+            <SideBarImg
+              className="sidebar__img"
+              src={props.imgSrc}
+              alt={props.imgAlt}
+            />
+          </StyledSideBarLink>
+        </Link>
       )}
     </StyledSideBarItem>
   );

@@ -15,7 +15,17 @@ export const SideBar = (props) => {
       </S.SideBarPersonal>
       <S.SideBarBlock>
         <S.SideBarList className="sidebar__list">
-          <SideBarItem
+          {props.categories.map((category) => {
+            return (
+              <SideBarItem
+                linkTo={`${category.id}`}
+                imgSrc={`img/playlist0${category.id}.png`}
+                imgAlt={`${category.nameCategory}`}
+                isLoading={props.isLoading}
+              />
+            );
+          })}
+          {/* <SideBarItem
             linkTo="#"
             imgSrc="img/playlist01.png"
             imgAlt="day's playlist"
@@ -34,7 +44,7 @@ export const SideBar = (props) => {
             imgSrc="img/playlist03.png"
             imgAlt="day's playlist"
             isLoading={props.isLoading}
-          />
+          /> */}
         </S.SideBarList>
       </S.SideBarBlock>
     </S.MainSidebar>
