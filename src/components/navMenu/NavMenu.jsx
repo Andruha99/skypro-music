@@ -10,6 +10,10 @@ export const NavMenu = () => {
     setMenuOpen(!menuOpen);
   };
 
+  const handleOut = () => {
+    localStorage.clear();
+  };
+
   return (
     <S.MainNav>
       <S.NavLogo>
@@ -27,7 +31,7 @@ export const NavMenu = () => {
           <S.MenuList>
             <MenuItem linkTo="/" name="Главное" />
             <MenuItem linkTo="/favorites" name="Мой плейлист" />
-            <MenuItem linkTo="/login" name="Войти" />
+            <MenuItem linkTo="/login" name="Выйти" onClick={handleOut} />
           </S.MenuList>
         ) : (
           ""

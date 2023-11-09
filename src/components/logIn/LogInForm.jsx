@@ -1,8 +1,7 @@
 import React from "react";
 import * as S from "./styles";
-import { Link } from "react-router-dom";
 
-export const LogInForm = () => {
+export const LogInForm = (props) => {
   return (
     <S.LogInWrap>
       <S.LogInContainer>
@@ -11,12 +10,13 @@ export const LogInForm = () => {
           <S.FormInput type="email" placeholder="Почта" />
           <S.FormInput type="password" placeholder="Пароль" />
           <S.ButtonsContainer>
-            <S.EnterButton type="submit">Войти</S.EnterButton>
-            <Link to="/register">
-              <S.RegisterButton type="button">
-                Зарегистрироваться
-              </S.RegisterButton>
-            </Link>
+            <S.EnterButton to={"/"} onClick={props.handleEnter} type="submit">
+              Войти
+            </S.EnterButton>
+
+            <S.RegisterButton to="/register" type="button">
+              Зарегистрироваться
+            </S.RegisterButton>
           </S.ButtonsContainer>
         </S.Form>
       </S.LogInContainer>

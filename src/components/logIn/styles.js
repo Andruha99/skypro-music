@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const LogInWrap = styled.div`
@@ -36,10 +37,10 @@ export const FormInput = styled.input`
   color: #e1e1e1;
   border: none;
   border-bottom: 1px solid #d0cece;
-  font-family: StratosSkyeng, sans-serif;
+  font-family: inherit;
   font-size: 18px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: inherit;
   line-height: 24px;
 `;
 
@@ -50,15 +51,16 @@ export const ButtonsContainer = styled.div`
   margin-top: 60px;
 `;
 
-export const FormButton = styled.button`
+export const FormButton = styled(Link)`
   padding: 13px 0;
   width: 100%;
-  font-family: StratosSkyeng, sans-serif;
+  font-family: inherit;
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
   line-height: 24px;
   border-radius: 6px;
+  text-align: center;
 `;
 
 export const EnterButton = styled(FormButton)`
