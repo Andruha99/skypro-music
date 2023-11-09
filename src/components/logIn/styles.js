@@ -78,6 +78,7 @@ export const EnterButton = styled(FormButton)`
 
 export const RegisterButton = styled(FormButton)`
   background-color: #fff;
+  color: #000;
   border: 1px solid #d0cece;
 
   &:hover {
