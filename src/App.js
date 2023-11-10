@@ -1,32 +1,22 @@
-import { useEffect, useState } from "react";
-import { AudioPlayer } from "./components/audioPlayer/AudioPlayer";
-import { NavMenu } from "./components/navMenu/NavMenu";
-import { SideBar } from "./components/sideBar/SideBar";
-import { TrackList } from "./components/trackList/TrackList";
 import { GlobalStyle } from "./globalStyles";
 import * as S from "./style";
+import { AppRoutes } from "./routes";
+import { useState } from "react";
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isAllow, setIsAllow] = useState(false);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(!isLoading);
-    }, 5000);
-  }, []);
+  const handleEnter = () => {
+    localStorage.setItem("user", "agsdga");
+    setIsAllow(!isAllow);
+  };
 
   return (
     <>
       <GlobalStyle />
       <S.Wrapper>
         <S.Container>
-          <S.Main>
-            <NavMenu />
-            <TrackList isLoading={isLoading} />
-            <SideBar isLoading={isLoading} />
-          </S.Main>
-          <AudioPlayer isLoading={isLoading} />
-          <footer></footer>
+          <AppRoutes handleEnter={handleEnter} isAllow={isAllow} />
         </S.Container>
       </S.Wrapper>
     </>

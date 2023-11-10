@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { MenuItem } from "../menuItem/MenuItem";
 import * as S from "./styles";
+import { Link } from "react-router-dom";
 
 export const NavMenu = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -9,10 +10,16 @@ export const NavMenu = () => {
     setMenuOpen(!menuOpen);
   };
 
+  const handleOut = () => {
+    localStorage.clear();
+  };
+
   return (
     <S.MainNav>
       <S.NavLogo>
-        <S.LogoImg src="img/logo.png" alt="logo" />
+        <Link to="/">
+          <S.LogoImg src="img/logo.png" alt="logo" />
+        </Link>
       </S.NavLogo>
       <S.NavBurger onClick={toggleMenu}>
         <S.BurgerLine></S.BurgerLine>
@@ -22,9 +29,9 @@ export const NavMenu = () => {
       <S.NavMenu>
         {menuOpen ? (
           <S.MenuList>
-            <MenuItem linkTo="#" name="Главное" />
-            <MenuItem linkTo="#" name="Мой плейлист" />
-            <MenuItem linkTo="../signin.html" name="Войти" />
+            <MenuItem linkTo="/" name="Главное" />
+            <MenuItem linkTo="/favorites" name="Мой плейлист" />
+            <MenuItem linkTo="/login" name="Выйти" onClick={handleOut} />
           </S.MenuList>
         ) : (
           ""
