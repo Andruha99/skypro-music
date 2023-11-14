@@ -4,7 +4,7 @@ import { SkeletonTrackAuthor, SkeletonTrackText } from "../skeleton/styles";
 
 export const Track = (props) => {
   return (
-    <S.PlaylistItem>
+    <S.PlaylistItem key={props.id} onClick={() => props.setActiveTrack(props)}>
       <S.PlayListTrack>
         <S.TrackTitle>
           <S.TrackTitleImage>
@@ -16,7 +16,7 @@ export const Track = (props) => {
             <SkeletonTrackText />
           ) : (
             <div className="track__title-text">
-              <S.TrackTitleLink href="http://">
+              <S.TrackTitleLink href="#">
                 {props.trackTitle}
                 <S.TrackTitleSpan>{props.trackTitleSpan}</S.TrackTitleSpan>
               </S.TrackTitleLink>
@@ -28,7 +28,7 @@ export const Track = (props) => {
           <SkeletonTrackAuthor />
         ) : (
           <S.TrackAuthor>
-            <S.TrackAuthorLink href="http://">{props.author}</S.TrackAuthorLink>
+            <S.TrackAuthorLink href="#">{props.author}</S.TrackAuthorLink>
           </S.TrackAuthor>
         )}
 
@@ -36,9 +36,7 @@ export const Track = (props) => {
           {props.isLoading ? (
             <SkeletonTrackAuthor />
           ) : (
-            <S.TrackAlbumLink href="http://">
-              {props.trackAlbum}
-            </S.TrackAlbumLink>
+            <S.TrackAlbumLink href="#">{props.trackAlbum}</S.TrackAlbumLink>
           )}
         </S.TrackAlbum>
         <div className="track__time">

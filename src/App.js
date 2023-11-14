@@ -8,7 +8,7 @@ function App() {
 
   const handleEnter = () => {
     localStorage.setItem("user", "agsdga");
-    setIsAllow(!isAllow);
+    setIsAllow(true);
   };
 
   return (
