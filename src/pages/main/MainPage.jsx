@@ -6,14 +6,25 @@ import { SideBar } from "../../components/sideBar/SideBar";
 import { TrackList } from "../../components/trackList/TrackList";
 import * as S from "../../style";
 import { CATEGORIES } from "../../constants";
+import { getTracks } from "../../api";
+import { ErrorMes } from "../../components/error/ErrorMessage";
 
 export const MainPage = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const [tracks, setTracks] = useState([]);
+  const [activeTrack, setActiveTrack] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(!isLoading);
-    }, 5000);
+    getTracks()
+      .then((response) => {
+        setTracks(response);
+        setIsLoading(!isLoading);
+      })
+      .catch(() => {
+        setErrorMessage("Какие-то проблемы с сервером");
+        setIsLoading(!isLoading);
+      });
   }, []);
 
   return (
@@ -21,10 +32,24 @@ export const MainPage = () => {
       <S.Container>
         <S.Main>
           <NavMenu />
-          <TrackList isLoading={isLoading} />
+          {errorMessage ? (
+            <ErrorMes />
+          ) : (
+            <TrackList
+              tracks={tracks}
+              isLoading={isLoading}
+              setActiveTrack={setActiveTrack}
+            />
+          )}
+
           <SideBar isLoading={isLoading} categories={CATEGORIES} />
         </S.Main>
-        <AudioPlayer isLoading={isLoading} />
+        {!activeTrack ? (
+          ""
+        ) : (
+          <AudioPlayer track={activeTrack} isLoading={isLoading} />
+        )}
+
         <footer></footer>
       </S.Container>
     </S.Wrapper>

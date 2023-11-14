@@ -3,6 +3,7 @@ import * as S from "./styles";
 import { SkeletonAudioPlayerText } from "../skeleton/styles";
 
 export const AudioPlayer = (props) => {
+  console.log(props);
   return (
     <S.Bar>
       <S.BarContent>
@@ -49,7 +50,7 @@ export const AudioPlayer = (props) => {
                     <SkeletonAudioPlayerText />
                   ) : (
                     <S.TrackPlayAuthorLink href="http://">
-                      Ты та...
+                      {props.track.trackTitle}
                     </S.TrackPlayAuthorLink>
                   )}
                 </S.TrackPlayAuthor>
@@ -58,7 +59,7 @@ export const AudioPlayer = (props) => {
                     <SkeletonAudioPlayerText />
                   ) : (
                     <S.TrackPlayAlbumLink href="http://">
-                      Баста
+                      {props.track.author}
                     </S.TrackPlayAlbumLink>
                   )}
                 </S.TrackPlayAlbum>

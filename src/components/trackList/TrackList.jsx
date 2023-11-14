@@ -5,8 +5,11 @@ import { FilterByYear } from "../filterByYear/FilterByYear";
 import { FilterByGenre } from "../filterByGenre/FilterByGenre";
 import * as S from "./styles";
 
+import { Skeleton } from "../skeleton/Skeleton";
+
 export const TrackList = (props) => {
   const [filterBy, setFilterBy] = useState("");
+  // const [tracks, setTracks] = useState([]);
 
   const handleFilterByAuthor = () => {
     if (filterBy !== "author") {
@@ -31,6 +34,12 @@ export const TrackList = (props) => {
       setFilterBy("");
     }
   };
+
+  // useEffect(() => {
+  //   getTracks().then((response) => {
+  //     setTracks(response);
+  //   });
+  // }, []);
 
   return (
     <S.MainCenterBlock>
@@ -90,158 +99,54 @@ export const TrackList = (props) => {
           </S.Col4>
         </S.ContentTitle>
         <S.ContentPlaylist>
-          <Track
-            trackTitle="Guilt"
-            author="Nero"
-            trackAlbum="Welcome Reality"
-            trackTime="4:44"
-            trackTitleSpan=""
-            isLoading={props.isLoading}
-          />
-
-          <Track
-            trackTitle="Elektro"
-            author="Dynoro, Outwork, Mr. Gee"
-            trackAlbum="Elektro"
-            trackTime="2:22"
-            trackTitleSpan=""
-            isLoading={props.isLoading}
-          />
-
-          <Track
-            trackTitle="I’m Fire"
-            author="Ali Bakgor"
-            trackAlbum="I’m Fire"
-            trackTime="2:22"
-            trackTitleSpan=""
-            isLoading={props.isLoading}
-          />
-
-          <Track
-            trackTitle="Non Stop"
-            author="Стоункат, Psychopath"
-            trackAlbum="Non Stop"
-            trackTime="4:12"
-            trackTitleSpan="(Remix)"
-            isLoading={props.isLoading}
-          />
-
-          <Track
-            trackTitle="Run Run"
-            author="Jaded, Will Clarke, AR/CO"
-            trackAlbum="Run Run"
-            trackTime="2:54"
-            trackTitleSpan="(feat. AR/CO)"
-            isLoading={props.isLoading}
-          />
-
-          <Track
-            trackTitle="Eyes on Fire"
-            author="Blue Foundation, Zeds Dead"
-            trackAlbum="Eyes on Fire"
-            trackTime="5:20"
-            trackTitleSpan="(Zeds Dead Remix)"
-            isLoading={props.isLoading}
-          />
-
-          <Track
-            trackTitle="Mucho Bien"
-            author="HYBIT, Mr. Black, Offer Nissim, Hi Profile"
-            trackAlbum="Mucho Bien"
-            trackTime="3:41"
-            trackTitleSpan="(Hi Profile Remix)"
-            isLoading={props.isLoading}
-          />
-
-          <Track
-            trackTitle="Mucho Bien"
-            author="HYBIT, Mr. Black, Offer Nissim, Hi Profile"
-            trackAlbum="Mucho Bien"
-            trackTime="3:41"
-            trackTitleSpan="(Hi Profile Remix)"
-            isLoading={props.isLoading}
-          />
-
-          <Track
-            trackTitle="Knives n Cherries"
-            author="minthaze"
-            trackAlbum="Captivating"
-            trackTime="1:48"
-            trackTitleSpan=""
-            isLoading={props.isLoading}
-          />
-
-          <Track
-            trackTitle="Knives n Cherries"
-            author="minthaze"
-            trackAlbum="Captivating"
-            trackTime="1:48"
-            trackTitleSpan=""
-            isLoading={props.isLoading}
-          />
-
-          <Track
-            trackTitle="Knives n Cherries"
-            author="minthaze"
-            trackAlbum="Captivating"
-            trackTime="1:48"
-            trackTitleSpan=""
-            isLoading={props.isLoading}
-          />
-
-          <Track
-            trackTitle="Knives n Cherries"
-            author="minthaze"
-            trackAlbum="Captivating"
-            trackTime="1:48"
-            trackTitleSpan=""
-            isLoading={props.isLoading}
-          />
-
-          <Track
-            trackTitle="Knives n Cherries"
-            author="minthaze"
-            trackAlbum="Captivating"
-            trackTime="1:48"
-            trackTitleSpan=""
-            isLoading={props.isLoading}
-          />
-
-          <Track
-            trackTitle="Knives n Cherries"
-            author="minthaze"
-            trackAlbum="Captivating"
-            trackTime="1:48"
-            trackTitleSpan=""
-            isLoading={props.isLoading}
-          />
-
-          <Track
-            trackTitle="Knives n Cherries"
-            author="minthaze"
-            trackAlbum="Captivating"
-            trackTime="1:48"
-            trackTitleSpan=""
-            isLoading={props.isLoading}
-          />
-
-          <Track
-            trackTitle="How Deep Is Your Love"
-            author="Calvin Harris, Disciples"
-            trackAlbum="How Deep Is Your Love"
-            trackTime="3:32"
-            trackTitleSpan=""
-            isLoading={props.isLoading}
-          />
-
-          <Track
-            trackTitle="Morena"
-            author="Tom Boxer"
-            trackAlbum="Soundz Made in Romania"
-            trackTime="3:36"
-            trackTitleSpan=""
-            isLoading={props.isLoading}
-          />
+          {props.isLoading ? (
+            <div>
+              <Skeleton />
+              <Skeleton />
+              <Skeleton />
+              <Skeleton />
+              <Skeleton />
+              <Skeleton />
+              <Skeleton />
+              <Skeleton />
+              <Skeleton />
+              <Skeleton />
+              <Skeleton />
+              <Skeleton />
+              <Skeleton />
+              <Skeleton />
+              <Skeleton />
+              <Skeleton />
+              <Skeleton />
+              <Skeleton />
+              <Skeleton />
+              <Skeleton />
+              <Skeleton />
+              <Skeleton />
+              <Skeleton />
+              <Skeleton />
+              <Skeleton />
+              <Skeleton />
+              <Skeleton />
+              <Skeleton />
+              <Skeleton />
+            </div>
+          ) : (
+            props.tracks.map((track) => {
+              return (
+                <Track
+                  key={track.id}
+                  trackTitle={track.name}
+                  author={track.author}
+                  trackAlbum={track.album}
+                  trackTime={track.duration_in_seconds}
+                  trackTitleSpan=""
+                  isLoading={props.isLoading}
+                  setActiveTrack={props.setActiveTrack}
+                />
+              );
+            })
+          )}
         </S.ContentPlaylist>
       </S.CenterBlockContent>
     </S.MainCenterBlock>

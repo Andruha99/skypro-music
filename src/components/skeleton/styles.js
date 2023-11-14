@@ -37,3 +37,8 @@ export const SkeletonAudioPlayerText = styled(StyledSkeleton)`
   width: 59px;
   height: 15px;
 `;
+
+export const SkeletonWrap = styled.div`
+  display: flex;
+  column-gap: 40px;
+`;
