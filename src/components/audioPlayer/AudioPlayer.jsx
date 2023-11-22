@@ -1,11 +1,33 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import * as S from "./styles";
 import { SkeletonAudioPlayerText } from "../skeleton/styles";
 
 export const AudioPlayer = (props) => {
-  console.log(props);
+  const playRef = useRef(null);
+  const [isPlay, setIsPlay] = useState(true);
+
+  useEffect(() => {
+    setIsPlay(true);
+  }, [props.track.trackFile]);
+
+  const handleStart = () => {
+    console.log(playRef);
+    setIsPlay(true);
+    playRef.current.play();
+  };
+
+  const handleStop = () => {
+    setIsPlay(false);
+    playRef.current.pause();
+  };
   return (
     <S.Bar>
+      <audio
+        autoPlay
+        controls
+        ref={playRef}
+        src={props.track.trackFile}
+      ></audio>
       <S.BarContent>
         <S.BarPlayerProgress></S.BarPlayerProgress>
         <S.BarPlayerBlock>
@@ -16,11 +38,19 @@ export const AudioPlayer = (props) => {
                   <use xlinkHref="img/icon/sprite.svg#icon-prev"></use>
                 </S.BtnPrevSvg>
               </S.BtnPrev>
-              <S.BtnPlay>
-                <S.BtnPlaySvg alt="play">
-                  <use xlinkHref="img/icon/sprite.svg#icon-play"></use>
-                </S.BtnPlaySvg>
-              </S.BtnPlay>
+              {isPlay ? (
+                <S.BtnPlay onClick={handleStop}>
+                  <S.BtnPlaySvg alt="pause">
+                    <use xlinkHref="img/icon/sprite.svg#icon-pause"></use>
+                  </S.BtnPlaySvg>
+                </S.BtnPlay>
+              ) : (
+                <S.BtnPlay onClick={handleStart}>
+                  <S.BtnPlaySvg alt="play">
+                    <use xlinkHref="img/icon/sprite.svg#icon-play"></use>
+                  </S.BtnPlaySvg>
+                </S.BtnPlay>
+              )}
               <S.BtnNext>
                 <S.BtnNextSvg alt="next">
                   <use xlinkHref="img/icon/sprite.svg#icon-next"></use>
