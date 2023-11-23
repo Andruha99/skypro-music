@@ -147,6 +147,10 @@ export const BtnRepeatSvg = styled.svg`
   stroke: #696969;
 `;
 
+export const BtnRepeatSvgActive = styled(BtnRepeatSvg)`
+  stroke: #fff;
+`;
+
 export const BtnShuffle = styled(PlayerButton)`
   display: -webkit-box;
   display: -ms-flexbox;

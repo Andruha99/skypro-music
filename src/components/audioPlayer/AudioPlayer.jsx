@@ -1,17 +1,41 @@
 import React, { useEffect, useRef, useState } from "react";
 import * as S from "./styles";
 import { SkeletonAudioPlayerText } from "../skeleton/styles";
+import { ProgressBar } from "../progressBar/ProgressBar";
 
 export const AudioPlayer = (props) => {
   const playRef = useRef(null);
   const [isPlay, setIsPlay] = useState(true);
+  const [isRepeat, setIsRepeat] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const [volume, setVolume] = useState(0.5);
 
   useEffect(() => {
     setIsPlay(true);
   }, [props.track.trackFile]);
 
+  useEffect(() => {
+    const updateTime = () => {
+      if (!duration) {
+        setCurrentTime(playRef.current.currentTime);
+        setDuration(playRef.current.duration);
+      } else {
+        setCurrentTime(0);
+        setDuration(0);
+      }
+    };
+    playRef.current.addEventListener("timeupdate", updateTime);
+    return () => {
+      playRef.current.removeEventListener("timeupdate", updateTime);
+    };
+  }, []);
+
+  useEffect(() => {
+    playRef.current.volume = volume;
+  }, [volume]);
+
   const handleStart = () => {
-    console.log(playRef);
     setIsPlay(true);
     playRef.current.play();
   };
@@ -20,16 +44,28 @@ export const AudioPlayer = (props) => {
     setIsPlay(false);
     playRef.current.pause();
   };
+
+  const handleRepeat = () => {
+    if (isRepeat) {
+      setIsRepeat(false);
+      playRef.current.loop = false;
+    } else {
+      setIsRepeat(true);
+      playRef.current.loop = true;
+    }
+  };
+
   return (
     <S.Bar>
-      <audio
-        autoPlay
-        controls
-        ref={playRef}
-        src={props.track.trackFile}
-      ></audio>
+      <audio autoPlay ref={playRef} src={props.track.trackFile}></audio>
       <S.BarContent>
-        <S.BarPlayerProgress></S.BarPlayerProgress>
+        <S.BarPlayerProgress>
+          <ProgressBar
+            playRef={playRef}
+            duration={duration}
+            currentTime={currentTime}
+          />
+        </S.BarPlayerProgress>
         <S.BarPlayerBlock>
           <S.BarPlayer>
             <S.PlayerControls>
@@ -56,10 +92,16 @@ export const AudioPlayer = (props) => {
                   <use xlinkHref="img/icon/sprite.svg#icon-next"></use>
                 </S.BtnNextSvg>
               </S.BtnNext>
-              <S.BtnRepeat>
-                <S.BtnRepeatSvg alt="repeat">
-                  <use xlinkHref="img/icon/sprite.svg#icon-repeat"></use>
-                </S.BtnRepeatSvg>
+              <S.BtnRepeat onClick={handleRepeat}>
+                {isRepeat ? (
+                  <S.BtnRepeatSvgActive>
+                    <use xlinkHref="img/icon/sprite.svg#icon-repeat"></use>
+                  </S.BtnRepeatSvgActive>
+                ) : (
+                  <S.BtnRepeatSvg alt="repeat">
+                    <use xlinkHref="img/icon/sprite.svg#icon-repeat"></use>
+                  </S.BtnRepeatSvg>
+                )}
               </S.BtnRepeat>
               <S.BtnShuffle>
                 <S.ShuffleSvg alt="shuffle">
@@ -117,7 +159,14 @@ export const AudioPlayer = (props) => {
                 </S.VolumeSvg>
               </S.VolumeImage>
               <S.VolumeProgress>
-                <S.VolumeProgressLine type="range" name="range" />
+                <S.VolumeProgressLine
+                  type="range"
+                  name="range"
+                  min={0}
+                  step={0.1}
+                  max={1}
+                  onChange={(e) => setVolume(e.target.value)}
+                />
               </S.VolumeProgress>
             </S.VolumeContent>
           </S.VolumeBlock>
