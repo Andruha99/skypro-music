@@ -9,7 +9,6 @@ import { Skeleton } from "../skeleton/Skeleton";
 
 export const TrackList = (props) => {
   const [filterBy, setFilterBy] = useState("");
-  // const [tracks, setTracks] = useState([]);
 
   const handleFilterByAuthor = () => {
     if (filterBy !== "author") {
@@ -34,12 +33,6 @@ export const TrackList = (props) => {
       setFilterBy("");
     }
   };
-
-  // useEffect(() => {
-  //   getTracks().then((response) => {
-  //     setTracks(response);
-  //   });
-  // }, []);
 
   return (
     <S.MainCenterBlock>
@@ -141,6 +134,7 @@ export const TrackList = (props) => {
                   trackAlbum={track.album}
                   trackTime={track.duration_in_seconds}
                   trackTitleSpan=""
+                  trackFile={track.track_file}
                   isLoading={props.isLoading}
                   setActiveTrack={props.setActiveTrack}
                 />
