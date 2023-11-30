@@ -28,7 +28,10 @@ export const AppRoutes = (props) => {
         path="/login"
         element={<LoginPage handleEnter={props.handleEnter} />}
       />
-      <Route path="/register" element={<RegistrationPage />} />
+      <Route
+        path="/register"
+        element={<RegistrationPage handleEnter={props.handleEnter} />}
+      />
       <Route path="*" element={<UnfoundPage />} />
     </Routes>
   );
