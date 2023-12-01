@@ -5,12 +5,11 @@ import { useAuthContext } from "../../context/AuthContext";
 import { Link } from "react-router-dom";
 
 export const SideBar = (props) => {
-  const { currentUser } = useAuthContext();
-
-  console.log(currentUser);
+  const { currentUser, setIsAllow } = useAuthContext();
 
   const handleLogOut = () => {
     localStorage.clear();
+    setIsAllow(false);
   };
 
   return (

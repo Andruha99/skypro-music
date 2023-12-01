@@ -6,26 +6,17 @@ import { AuthContext } from "./context/AuthContext";
 
 function App() {
   const [isAllow, setIsAllow] = useState(false);
-  const [currentUser, setCurrentUser] = useState(
-    JSON.parse(localStorage.getItem("user"))
-  );
-
-  const handleEnter = () => {
-    localStorage.setItem("user", "agsdga");
-    setIsAllow(true);
-  };
+  const [currentUser, setCurrentUser] = useState("");
 
   return (
     <>
-      <AuthContext.Provider value={{ currentUser, setCurrentUser }}>
+      <AuthContext.Provider
+        value={{ currentUser, setCurrentUser, isAllow, setIsAllow }}
+      >
         <GlobalStyle />
         <S.Wrapper>
           <S.Container>
-            <AppRoutes
-              handleEnter={handleEnter}
-              isAllow={isAllow}
-              setIsAllow={setIsAllow}
-            />
+            <AppRoutes isAllow={isAllow} setIsAllow={setIsAllow} />
           </S.Container>
         </S.Wrapper>
       </AuthContext.Provider>

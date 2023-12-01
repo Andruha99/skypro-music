@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { MenuItem } from "../menuItem/MenuItem";
 import * as S from "./styles";
 import { Link } from "react-router-dom";
+import { useAuthContext } from "../../context/AuthContext";
 
 export const NavMenu = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { setIsAllow } = useAuthContext();
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -12,6 +14,7 @@ export const NavMenu = () => {
 
   const handleOut = () => {
     localStorage.clear();
+    setIsAllow(false);
   };
 
   return (
