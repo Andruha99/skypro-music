@@ -1,22 +1,55 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as S from "./styles";
 import { useEffect, useState } from "react";
+import { logInUser, registerUser } from "../../api";
+import { useAuthContext } from "../../context/AuthContext";
 
-export default function AuthPage({ handleEnter, isLoginMode = true }) {
+export default function AuthPage({ isAllow, setIsAllow, isLoginMode = true }) {
   const [error, setError] = useState(null);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
+  const [disabledButton, setDisabledButton] = useState(false);
+  const { setCurrentUser } = useAuthContext();
 
-  const handleLogin = async ({ email, password }) => {
+  const navigate = useNavigate();
+
+  const handleLogin = async () => {
+    if (!email || !password) {
+      alert("Заполните логин/пароль");
+      return;
+    }
+
     alert(`Выполняется вход: ${email} ${password}`);
-    setError("Неизвестная ошибка входа");
+    setDisabledButton(true);
+    if (email && password) {
+      logInUser({ setCurrentUser, navigate, setIsAllow, email, password });
+    } else {
+      setError("Неизвестная ошибка входа");
+    }
   };
 
   const handleRegister = async () => {
-    alert(`Выполняется регистрация: ${email} ${password}`);
-    setError("Неизвестная ошибка регистрации");
+    if (!email || !password) {
+      alert("Заполните логин/пароль");
+      return;
+    }
+
+    if (password !== repeatPassword) {
+      alert("Проверьте правильность введенного пароля");
+      return;
+    }
+
+    if (email && password && repeatPassword) {
+      alert(`Выполняется регистрация: ${email} ${password}`);
+      registerUser({ navigate, setIsAllow, email, password }).then(() => {
+        localStorage.setItem("user", email);
+        setIsAllow(true);
+      });
+    } else {
+      setError("Неизвестная ошибка регистрации");
+    }
   };
 
   // Сбрасываем ошибку если пользователь меняет данные на форме или меняется режим формы
@@ -56,9 +89,17 @@ export default function AuthPage({ handleEnter, isLoginMode = true }) {
             </S.Inputs>
             {error && <S.Error>{error}</S.Error>}
             <S.Buttons>
-              <Link to={"/"}>
-                <S.PrimaryButton onClick={handleEnter}>Войти</S.PrimaryButton>
-              </Link>
+              {disabledButton ? (
+                <Link to={"/"}>
+                  <S.PrimaryButton disabled onClick={handleLogin}>
+                    Войти
+                  </S.PrimaryButton>
+                </Link>
+              ) : (
+                <Link to={"/"}>
+                  <S.PrimaryButton onClick={handleLogin}>Войти</S.PrimaryButton>
+                </Link>
+              )}
 
               <Link to="/register">
                 <S.SecondaryButton>Зарегистрироваться</S.SecondaryButton>
@@ -98,11 +139,19 @@ export default function AuthPage({ handleEnter, isLoginMode = true }) {
             </S.Inputs>
             {error && <S.Error>{error}</S.Error>}
             <S.Buttons>
-              <Link to={"/"}>
-                <S.PrimaryButton onClick={handleEnter}>
-                  Зарегистрироваться
-                </S.PrimaryButton>
-              </Link>
+              {disabledButton ? (
+                <Link to={"/"}>
+                  <S.PrimaryButton disabled onClick={handleRegister}>
+                    Зарегистрироваться
+                  </S.PrimaryButton>
+                </Link>
+              ) : (
+                <Link to={"/"}>
+                  <S.PrimaryButton onClick={handleRegister}>
+                    Зарегистрироваться
+                  </S.PrimaryButton>
+                </Link>
+              )}
             </S.Buttons>
           </>
         )}
@@ -110,29 +159,3 @@ export default function AuthPage({ handleEnter, isLoginMode = true }) {
     </S.PageContainer>
   );
 }
-
-// import React from "react";
-// import * as S from "./styles";
-
-// export const LogInForm = (props) => {
-//   return (
-//     <S.LogInWrap>
-//       <S.LogInContainer>
-//         <S.FormLogo src="img/logo_modal.png" />
-//         <S.Form>
-//           <S.FormInput type="email" placeholder="Почта" />
-//           <S.FormInput type="password" placeholder="Пароль" />
-//           <S.ButtonsContainer>
-//             <S.EnterButton to={"/"} onClick={props.handleEnter} type="submit">
-//               Войти
-//             </S.EnterButton>
-
-//             <S.RegisterButton to="/register" type="button">
-//               Зарегистрироваться
-//             </S.RegisterButton>
-//           </S.ButtonsContainer>
-//         </S.Form>
-//       </S.LogInContainer>
-//     </S.LogInWrap>
-//   );
-// };

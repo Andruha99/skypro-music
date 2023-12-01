@@ -2,5 +2,11 @@ import React from "react";
 import AuthPage from "../../components/logIn/LogInForm";
 
 export const RegistrationPage = (props) => {
-  return <AuthPage handleEnter={props.handleEnter} isLoginMode={false} />;
+  return (
+    <AuthPage
+      setIsAllow={props.setIsAllow}
+      handleEnter={props.handleEnter}
+      isLoginMode={false}
+    />
+  );
 };

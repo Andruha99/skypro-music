@@ -21,16 +21,35 @@ export const AppRoutes = (props) => {
     <Routes>
       <Route element={<ProtectedRoute isAllowed={props.isAllow} />}>
         <Route path="/" element={<MainPage />} />
-        <Route path="/favorites" element={<FavoritesPage />} />
-        <Route path="/category/:id" element={<CategoryPage />} />
+        <Route
+          setIsAllow={props.setIsAllow}
+          path="/favorites"
+          element={<FavoritesPage />}
+        />
+        <Route
+          setIsAllow={props.setIsAllow}
+          path="/category/:id"
+          element={<CategoryPage />}
+        />
       </Route>
       <Route
         path="/login"
-        element={<LoginPage handleEnter={props.handleEnter} />}
+        element={
+          <LoginPage
+            handleEnter={props.handleEnter}
+            setIsAllow={props.setIsAllow}
+            isAllow={props.isAllow}
+          />
+        }
       />
       <Route
         path="/register"
-        element={<RegistrationPage handleEnter={props.handleEnter} />}
+        element={
+          <RegistrationPage
+            handleEnter={props.handleEnter}
+            setIsAllow={props.setIsAllow}
+          />
+        }
       />
       <Route path="*" element={<UnfoundPage />} />
     </Routes>
