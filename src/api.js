@@ -11,7 +11,13 @@ export async function getTracks() {
   return data;
 }
 
-export async function registerUser({ navigate, setIsAllow, email, password }) {
+export async function registerUser({
+  setCurrentUser,
+  navigate,
+  setIsAllow,
+  email,
+  password,
+}) {
   await fetch(`${baseUrl}/user/signup/`, {
     method: "POST",
     body: JSON.stringify({
@@ -39,7 +45,19 @@ export async function registerUser({ navigate, setIsAllow, email, password }) {
         throw new Error("Server breaks");
       }
     })
-    .then((json) => console.log(json));
+    .then((json) => {
+      console.log(json);
+      setCurrentUser(json);
+      localStorage.setItem("user", JSON.stringify(json));
+    })
+    .then(() => navigate("/"))
+    .catch((err) => {
+      if (err.message === "Incorrect request") {
+        alert("Проверьте логин или пароль");
+      } else if (err.message === "Server breaks") {
+        alert("Какие-то проблемы с сервером");
+      }
+    });
 }
 
 export async function logInUser({

@@ -44,10 +44,7 @@ export default function AuthPage({ isAllow, setIsAllow, isLoginMode = true }) {
     if (email && password && repeatPassword) {
       alert(`Выполняется регистрация: ${email} ${password}`);
       setDisabledButton(true);
-      registerUser({ navigate, setIsAllow, email, password }).then(() => {
-        localStorage.setItem("user", email);
-        setIsAllow(true);
-      });
+      registerUser({ navigate, setIsAllow, email, password });
     } else {
       setError("Неизвестная ошибка регистрации");
     }
