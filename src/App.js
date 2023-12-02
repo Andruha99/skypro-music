@@ -2,23 +2,24 @@ import { GlobalStyle } from "./globalStyles";
 import * as S from "./style";
 import { AppRoutes } from "./routes";
 import { useState } from "react";
+import { AuthContext } from "./context/AuthContext";
 
 function App() {
   const [isAllow, setIsAllow] = useState(false);
-
-  const handleEnter = () => {
-    localStorage.setItem("user", "agsdga");
-    setIsAllow(true);
-  };
+  const [currentUser, setCurrentUser] = useState("");
 
   return (
     <>
-      <GlobalStyle />
-      <S.Wrapper>
-        <S.Container>
-          <AppRoutes handleEnter={handleEnter} isAllow={isAllow} />
-        </S.Container>
-      </S.Wrapper>
+      <AuthContext.Provider
+        value={{ currentUser, setCurrentUser, isAllow, setIsAllow }}
+      >
+        <GlobalStyle />
+        <S.Wrapper>
+          <S.Container>
+            <AppRoutes isAllow={isAllow} setIsAllow={setIsAllow} />
+          </S.Container>
+        </S.Wrapper>
+      </AuthContext.Provider>
     </>
   );
 }
