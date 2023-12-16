@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import * as S from "./styles";
 import { SkeletonAudioPlayerText } from "../skeleton/styles";
 import { ProgressBar } from "../progressBar/ProgressBar";
+import { useDispatch } from "react-redux";
+import { setCurrentTrack } from "../../store/actions/creators/creators";
 
 export const AudioPlayer = (props) => {
   const playRef = useRef(null);
@@ -11,8 +13,13 @@ export const AudioPlayer = (props) => {
   const [duration, setDuration] = useState(0);
   const [volume, setVolume] = useState(0.5);
 
+  console.log(props);
+
+  const dispatch = useDispatch();
+
   useEffect(() => {
     setIsPlay(true);
+    dispatch(setCurrentTrack(props.track));
   }, [props.track.trackFile]);
 
   useEffect(() => {
