@@ -8,6 +8,7 @@ import * as S from "./styles";
 import { Skeleton } from "../skeleton/Skeleton";
 
 export const TrackList = (props) => {
+  console.log(props);
   const [filterBy, setFilterBy] = useState("");
 
   const handleFilterByAuthor = () => {
@@ -137,6 +138,8 @@ export const TrackList = (props) => {
                   trackFile={track.track_file}
                   isLoading={props.isLoading}
                   setActiveTrack={props.setActiveTrack}
+                  trackList={props.tracks}
+                  trackId={track.id}
                 />
               );
             })

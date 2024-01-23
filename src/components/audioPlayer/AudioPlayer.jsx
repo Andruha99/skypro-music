@@ -2,8 +2,13 @@ import React, { useEffect, useRef, useState } from "react";
 import * as S from "./styles";
 import { SkeletonAudioPlayerText } from "../skeleton/styles";
 import { ProgressBar } from "../progressBar/ProgressBar";
-import { useDispatch } from "react-redux";
-import { setCurrentTrack } from "../../store/actions/creators/creators";
+import { useDispatch, useSelector } from "react-redux";
+import { playerSelector } from "../../store/selectors/selectors";
+import {
+  setCurrentTrack,
+  setNextTrack,
+  setPrevTrack,
+} from "../../store/actions/creators/creators";
 
 export const AudioPlayer = (props) => {
   const playRef = useRef(null);
@@ -13,13 +18,22 @@ export const AudioPlayer = (props) => {
   const [duration, setDuration] = useState(0);
   const [volume, setVolume] = useState(0.5);
 
-  console.log(props);
-
+  const tracks = useSelector(playerSelector);
+  // console.log(tracks);
   const dispatch = useDispatch();
+  // const trackIDF = useSelector(
+  // (state) =>
+  // (state) => state.player.currentTrack
+  // state.player.currentTrack.content.trackList.findIndex(
+  //   (track) => track.id === state.player.currentTrack.content.trackId
+  // )
+  // .map((track) => track.id)
+  // .indexOf(state.player.currentTrack.content.trackId)
+  // );
+  // console.log(trackIDF);
 
   useEffect(() => {
     setIsPlay(true);
-    dispatch(setCurrentTrack(props.track));
   }, [props.track.trackFile]);
 
   useEffect(() => {
@@ -62,9 +76,30 @@ export const AudioPlayer = (props) => {
     }
   };
 
+  const handlePrevTrack = () => {
+    // const trackId = tracks.currentTrack.content.trackList.findIndex(
+    //   (track) => track.track_file === tracks.currentTrack.content.trackFile
+    // );
+
+    // console.log(tracks.currentTrack.content.trackList[trackId + 1]);
+    // dispatch(
+    //   setCurrentTrack(tracks.currentTrack.content.trackList[trackId + 1])
+    // );
+
+    dispatch(setPrevTrack());
+  };
+
+  const handleNextTrack = () => {
+    dispatch(setNextTrack());
+  };
+
   return (
     <S.Bar>
-      <audio autoPlay ref={playRef} src={props.track.trackFile}></audio>
+      <audio
+        autoPlay
+        ref={playRef}
+        src={tracks.currentTrack.content.trackFile}
+      ></audio>
       <S.BarContent>
         <S.BarPlayerProgress>
           <ProgressBar
@@ -76,7 +111,7 @@ export const AudioPlayer = (props) => {
         <S.BarPlayerBlock>
           <S.BarPlayer>
             <S.PlayerControls>
-              <S.BtnPrev>
+              <S.BtnPrev onClick={handlePrevTrack}>
                 <S.BtnPrevSvg alt="prev">
                   <use xlinkHref="img/icon/sprite.svg#icon-prev"></use>
                 </S.BtnPrevSvg>
@@ -94,7 +129,7 @@ export const AudioPlayer = (props) => {
                   </S.BtnPlaySvg>
                 </S.BtnPlay>
               )}
-              <S.BtnNext>
+              <S.BtnNext onClick={handleNextTrack}>
                 <S.BtnNextSvg alt="next">
                   <use xlinkHref="img/icon/sprite.svg#icon-next"></use>
                 </S.BtnNextSvg>
@@ -129,7 +164,7 @@ export const AudioPlayer = (props) => {
                     <SkeletonAudioPlayerText />
                   ) : (
                     <S.TrackPlayAuthorLink href="http://">
-                      {props.track.trackTitle}
+                      {tracks.currentTrack.content.trackTitle}
                     </S.TrackPlayAuthorLink>
                   )}
                 </S.TrackPlayAuthor>
@@ -138,7 +173,7 @@ export const AudioPlayer = (props) => {
                     <SkeletonAudioPlayerText />
                   ) : (
                     <S.TrackPlayAlbumLink href="http://">
-                      {props.track.author}
+                      {tracks.currentTrack.content.author}
                     </S.TrackPlayAlbumLink>
                   )}
                 </S.TrackPlayAlbum>

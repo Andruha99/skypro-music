@@ -1,10 +1,18 @@
 import React from "react";
 import * as S from "./styles";
 import { SkeletonTrackAuthor, SkeletonTrackText } from "../skeleton/styles";
+import { useDispatch } from "react-redux";
+import { setCurrentTrack } from "../../store/actions/creators/creators";
 
 export const Track = (props) => {
+  const dispatch = useDispatch();
+
+  const handleAddTrackToStore = () => {
+    props.setActiveTrack(props);
+    dispatch(setCurrentTrack(props, props.trackList));
+  };
   return (
-    <S.PlaylistItem key={props.id} onClick={() => props.setActiveTrack(props)}>
+    <S.PlaylistItem key={props.id} onClick={handleAddTrackToStore}>
       <S.PlayListTrack>
         <S.TrackTitle>
           <S.TrackTitleImage>

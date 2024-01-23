@@ -4,10 +4,11 @@ import {
   SET_PREV_TRACK,
 } from "../types/types";
 
-export const setCurrentTrack = (content) => ({
+export const setCurrentTrack = (content, trackList) => ({
   type: SET_CURRENT_TRACK,
   payload: {
     content,
+    trackList,
   },
 });
 
