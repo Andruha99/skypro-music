@@ -135,11 +135,11 @@ export const TrackList = (props) => {
                   trackAlbum={track.album}
                   trackTime={track.duration_in_seconds}
                   trackTitleSpan=""
-                  trackFile={track.track_file}
+                  track_file={track.track_file}
                   isLoading={props.isLoading}
                   setActiveTrack={props.setActiveTrack}
                   trackList={props.tracks}
-                  trackId={track.id}
+                  id={track.id}
                 />
               );
             })

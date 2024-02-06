@@ -5,7 +5,6 @@ import { ProgressBar } from "../progressBar/ProgressBar";
 import { useDispatch, useSelector } from "react-redux";
 import { playerSelector } from "../../store/selectors/selectors";
 import {
-  setCurrentTrack,
   setNextTrack,
   setPrevTrack,
 } from "../../store/actions/creators/creators";
@@ -18,7 +17,7 @@ export const AudioPlayer = (props) => {
   const [duration, setDuration] = useState(0);
   const [volume, setVolume] = useState(0.5);
 
-  const tracks = useSelector(playerSelector);
+  const tracks = useSelector((state) => state.player.currentTrack);
   // console.log(tracks);
   const dispatch = useDispatch();
   // const trackIDF = useSelector(
@@ -95,19 +94,15 @@ export const AudioPlayer = (props) => {
 
   return (
     <S.Bar>
-      <audio
-        autoPlay
-        ref={playRef}
-        src={tracks.currentTrack.content.trackFile}
-      ></audio>
+      <audio autoPlay ref={playRef} src={tracks.content.track_file}></audio>
       <S.BarContent>
-        <S.BarPlayerProgress>
-          <ProgressBar
-            playRef={playRef}
-            duration={duration}
-            currentTime={currentTime}
-          />
-        </S.BarPlayerProgress>
+        {/* <S.BarPlayerProgress> */}
+        <ProgressBar
+          playRef={playRef}
+          duration={duration}
+          currentTime={currentTime}
+        />
+        {/* </S.BarPlayerProgress> */}
         <S.BarPlayerBlock>
           <S.BarPlayer>
             <S.PlayerControls>
@@ -164,7 +159,7 @@ export const AudioPlayer = (props) => {
                     <SkeletonAudioPlayerText />
                   ) : (
                     <S.TrackPlayAuthorLink href="http://">
-                      {tracks.currentTrack.content.trackTitle}
+                      {tracks.content.trackTitle}
                     </S.TrackPlayAuthorLink>
                   )}
                 </S.TrackPlayAuthor>
@@ -173,7 +168,7 @@ export const AudioPlayer = (props) => {
                     <SkeletonAudioPlayerText />
                   ) : (
                     <S.TrackPlayAlbumLink href="http://">
-                      {tracks.currentTrack.content.author}
+                      {tracks.content.author}
                     </S.TrackPlayAlbumLink>
                   )}
                 </S.TrackPlayAlbum>
