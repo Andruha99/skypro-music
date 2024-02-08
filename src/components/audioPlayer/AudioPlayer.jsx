@@ -3,10 +3,10 @@ import * as S from "./styles";
 import { SkeletonAudioPlayerText } from "../skeleton/styles";
 import { ProgressBar } from "../progressBar/ProgressBar";
 import { useDispatch, useSelector } from "react-redux";
-import { playerSelector } from "../../store/selectors/selectors";
 import {
   setNextTrack,
   setPrevTrack,
+  toggleShuffle,
 } from "../../store/actions/creators/creators";
 
 export const AudioPlayer = (props) => {
@@ -16,6 +16,10 @@ export const AudioPlayer = (props) => {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [volume, setVolume] = useState(0.5);
+
+  const [isShuffled, setIsShuffled] = useState(false);
+
+  const shuffle = useSelector((state) => state.player.isShuffled);
 
   const tracks = useSelector((state) => state.player.currentTrack);
   // console.log(tracks);
@@ -92,6 +96,16 @@ export const AudioPlayer = (props) => {
     dispatch(setNextTrack());
   };
 
+  const setToggleShuffle = () => {
+    if (!isShuffled) {
+      setIsShuffled(true);
+      dispatch(toggleShuffle(true));
+    } else {
+      setIsShuffled(false);
+      dispatch(toggleShuffle(false));
+    }
+  };
+
   return (
     <S.Bar>
       <audio autoPlay ref={playRef} src={tracks.content.track_file}></audio>
@@ -140,7 +154,7 @@ export const AudioPlayer = (props) => {
                   </S.BtnRepeatSvg>
                 )}
               </S.BtnRepeat>
-              <S.BtnShuffle>
+              <S.BtnShuffle onClick={setToggleShuffle}>
                 <S.ShuffleSvg alt="shuffle">
                   <use xlinkHref="img/icon/sprite.svg#icon-shuffle"></use>
                 </S.ShuffleSvg>

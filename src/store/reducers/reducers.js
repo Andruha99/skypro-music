@@ -24,15 +24,15 @@ export default function playerReducer(state = initialState, action) {
     }
 
     case SET_PREV_TRACK: {
-      const trackId = state.trackList.findIndex(
+      const playlist = state.isShuffled
+        ? state.shuffledPlaylist
+        : state.trackList;
+
+      const trackId = playlist.findIndex(
         (track) => track.id === state.currentTrack.content.id
       );
 
-      const content = state.trackList[trackId - 1];
-
-      // const content = state.isShuffled
-      //   ? [...state.trackList].sort(() => 0.5 - Math.random())
-      //   : state.trackList[trackId - 1];
+      const content = playlist[trackId - 1];
 
       if (!content) {
         return state;
@@ -44,17 +44,16 @@ export default function playerReducer(state = initialState, action) {
     }
 
     case SET_NEXT_TRACK: {
-      const trackId = state.trackList.findIndex(
+      const playlist = state.isShuffled
+        ? state.shuffledPlaylist
+        : state.trackList;
+
+      const trackId = playlist.findIndex(
         (track) => track.id === state.currentTrack.content.id
       );
 
       console.log(trackId);
-      const content = state.trackList[trackId + 1];
-
-      // const content = state.isShuffled
-      //   ? [...state.trackList].sort(() => 0.5 - Math.random())
-      //   : state.trackList[trackId - 1];
-      console.log(content);
+      const content = playlist[trackId + 1];
 
       if (!content) {
         return state;
@@ -67,10 +66,10 @@ export default function playerReducer(state = initialState, action) {
     }
 
     case TOGGLE_SHUFFLED: {
-      // state.isShuffled = !state.isShuffled;
       return {
         ...state,
         isShuffled: !state.isShuffled,
+        shuffledPlaylist: [...state.trackList].sort(() => 0.5 - Math.random()),
       };
     }
 

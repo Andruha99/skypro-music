@@ -21,6 +21,9 @@ export const setNextTrack = () => ({
   type: SET_NEXT_TRACK,
 });
 
-export const toggleShuffle = () => ({
+export const toggleShuffle = (isShuffled) => ({
   type: TOGGLE_SHUFFLED,
+  payload: {
+    isShuffled,
+  },
 });
