@@ -9,7 +9,22 @@ export const Track = (props) => {
 
   const handleAddTrackToStore = () => {
     props.setActiveTrack(props);
-    dispatch(setCurrentTrack(props, props.trackList));
+    dispatch(
+      setCurrentTrack(
+        {
+          author: props.author,
+          trackTitle: props.trackTitle,
+          trackAlbum: props.trackAlbum,
+          trackTime: props.trackTime,
+          trackTitleSpan: props.trackTitleSpan,
+          track_file: props.track_file,
+          isLoading: props.isLoading,
+          trackList: props.trackList,
+          id: props.id,
+        },
+        props.trackList
+      )
+    );
   };
   return (
     <S.PlaylistItem key={props.id} onClick={handleAddTrackToStore}>
